@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laboratorio · JavaScript &amp; AJAX</title>
+
+  <!-- ── Google Fonts ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" /> 
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/ajax.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════ -->
+<header>
+  <span class="logo">LAB_Level_01</span>
+  <nav>
+    <a href="#sec-js">JavaScript</a>
+    <a href="#sec-ajax">AJAX</a>
+  </nav>
+</header>
+
+
+<!-- ══════════════════════════════════════════
+     MAIN
+══════════════════════════════════════════ -->
+<main>
+
+  <section id="sec-js">
+    <h2 class="section-title green">JavaScript</h2>
+
+    <!-- EJ-JS-1 · Palíndromo -->
+    <div class="card">
+      <p class="card-label">Ejercicio 01</p>
+      <h3>Detección de Palíndromo</h3>
+      <div class="field">
+        <label for="ej1-input">Cadena de texto</label>
+        <input type="text" id="ej1-input"
+          placeholder="Ej: Anita lava la tina"
+          autocomplete="off" />
+      </div>
+      <button class="btn btn-cyan" onclick="ej1_comprobar()">Comprobar</button>
+      <p class="out-label">Resultado</p>
+      <div class="out-box empty" id="ej1-out">—</div>
+    </div>
+
+    <!-- EJ-JS-2 · Número mayor -->
+    <div class="card">
+      <p class="card-label">Ejercicio 02</p>
+      <h3>Número Mayor</h3>
+      <div class="row2">
+        <div class="field">
+          <label for="ej2-n1">Número A</label>
+          <input type="text" id="ej2-n1" placeholder="12" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="ej2-n2">Número B</label>
+          <input type="text" id="ej2-n2" placeholder="47" autocomplete="off" />
+        </div>
+      </div>
+      <button class="btn btn-cyan" onclick="ej2_comparar()">Comparar</button>
+      <p class="out-label">Resultado</p>
+      <div class="out-box empty" id="ej2-out">—</div>
+    </div>
+
+    <!-- EJ-JS-3 · Vocales presentes -->
+    <div class="card">
+      <p class="card-label">Ejercicio 03</p>
+      <h3>Vocales Presentes en una Frase</h3>
+      <div class="field">
+        <label for="ej3-input">Frase</label>
+        <input type="text" id="ej3-input"
+          placeholder="Escribe una frase…"
+          autocomplete="off" />
+      </div>
+      <button class="btn btn-cyan" onclick="ej3_vocales()">Detectar Vocales</button>
+      <p class="out-label">Vocales encontradas</p>
+      <div class="out-box empty" id="ej3-out">—</div>
+    </div>
+
+    <!-- EJ-JS-4 · Frecuencia de vocales -->
+    <div class="card">
+      <p class="card-label">Ejercicio 04</p>
+      <h3>Frecuencia de Cada Vocal</h3>
+      <div class="field">
+        <label for="ej4-input">Frase</label>
+        <input type="text" id="ej4-input"
+          placeholder="Escribe una frase…"
+          autocomplete="off" />
+      </div>
+      <button class="btn btn-cyan" onclick="ej4_frecuencia()">Contar Vocales</button>
+      <p class="out-label">Frecuencia de aparición</p>
+      <div class="out-box empty" id="ej4-out">—</div>
+    </div>
+  </section>
+
+  <hr class="divider" data-label="fin sección javascript" />
+
+  <!-- ==========================================
+       SECCIÓN 2 · AJAX
+  =========================================== -->
+  <section id="sec-ajax">
+    <h2 class="section-title green">AJAX</h2>
+
+    <!-- EJ-AJAX-1 + EJ-AJAX-2 · URL y botón -->
+    <div class="card">
+      <p class="card-label">Petición HTTP</p>
+      <h3>Cargar Contenido Remoto</h3>
+      <div class="field">
+        <label for="ajax-url">URL de destino</label>
+        <input type="url" id="ajax-url"
+          placeholder="https://…"
+          autocomplete="off" />
+      </div>
+      <button class="btn btn-green" onclick="ajax_cargar()">Mostrar Contenidos</button>
+    </div>
+
+    <!-- EJ-AJAX-3 · Estado de la petición -->
+    <div class="card">
+      <p class="card-label">AJAX · Estado de la Petición</p>
+      <h3>Estados de la Petición</h3>
+      <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+        <span class="badge idle" id="ajax-badge">
+          <span class="dot"></span>No iniciada
+        </span>
+        <span id="ajax-estado-desc" style="color:var(--muted); font-size:.83rem;">
+          Esperando acción del usuario…
+        </span>
+      </div>
+    </div>
+
+    <!-- EJ-AJAX-5 + EJ-AJAX-4 · Grid código y cabeceras -->
+    <div class="ajax-grid">
+
+      <!-- EJ-AJAX-5 · Código de estado HTTP -->
+      <div class="card">
+        <p class="card-label">AJAX · Código de Estado</p>
+        <h3>Código de Estado HTTP</h3>
+        <div class="code-wrap">
+          <span class="code-num idle" id="ajax-code-num">—</span>
+          <span class="code-txt"     id="ajax-code-txt">Esperando petición…</span>
+        </div>
+      </div>
+
+      <!-- EJ-AJAX-4 · Cabeceras HTTP -->
+      <div class="card">
+        <p class="card-label">AJAX · Cabeceras HTTP</p>
+        <h3>Cabeceras de la Respuesta</h3>
+        <div class="scroll-box" id="ajax-cabeceras"></div>
+      </div>
+
+    </div>
+
+    <!-- EJ-AJAX-2 · Contenido de la respuesta -->
+    <div class="card">
+      <p class="card-label">AJAX · Respuesta del Servidor</p>
+      <h3>Contenidos</h3>
+      <div class="scroll-box" id="ajax-contenido"></div>
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer>
+  <div class="social-links">
+    <a href="https://www.facebook.com/people/Ch4rum/100066815058123/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+      </svg>
+      Facebook
+    </a>
+    <a href="https://www.instagram.com/Ch4rum/" target="_blank" rel="noopener" class="ig">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+      Instagram
+    </a>
+    <a href="https://github.com/ch4rum" target="_blank" rel="noopener" class="gh">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.69c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85 0 1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/>
+      </svg>
+      GitHub
+    </a>
+    <a href="https://discord.gg/Z4WwQJqjB" target="_blank" rel="noopener" class="dc">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/>
+      </svg>
+      Discord
+    </a>
+  </div>
+  <p>
+    For educational purposes only &verbar;
+    <span>LAB_Level_01</span> &verbar;
+    Made with <span class="heart">❤️</span> by
+    <a href="https://www.instagram.com/Ch4rum/" target="_blank" rel="noopener noreferrer">ch4rum</a>
+  </p>
+</footer>
+
+<script src="js/js-exercises.js"></script>
+<script src="js/ajax.js"></script>
+
+</body>
+</html>

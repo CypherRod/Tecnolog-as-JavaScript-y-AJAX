@@ -1,0 +1,149 @@
+/* ══════════════════════════════════════════
+   components.css — Tarjetas, Formularios,
+                    Botones, Cajas de salida,
+                    Títulos de sección
+══════════════════════════════════════════ */
+
+/* ── Título de sección ── */
+.section-title {
+  font-family: 'VT323', monospace;
+  font-size: 2.2rem;
+  letter-spacing: 4px;
+  margin-bottom: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+.section-title::before {
+  content: '//';
+  opacity: .4;
+  font-size: 1.4rem;
+}
+
+.section-title.cyan  { color: var(--neon-cyan);  text-shadow: var(--gc); }
+.section-title.green { color: var(--neon-green); text-shadow: var(--gg); }
+
+/* ── Tarjeta ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.4rem 1.5rem;
+  margin-bottom: 1.4rem;
+  transition: border-color .2s, box-shadow .2s;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Línea superior de brillo al hover */
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.card:hover           { border-color: var(--border-h); box-shadow: var(--gc); }
+.card:hover::after    { opacity: 1; }
+
+.card-label {
+  font-size: .68rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+  margin-bottom: .6rem;
+  opacity: .7;
+}
+
+.card h3 {
+  font-family: 'VT323', monospace;
+  font-size: 1.4rem;
+  color: var(--neon-cyan);
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+/* ── Campos de formulario ── */
+label {
+  display: block;
+  font-size: .78rem;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-bottom: .35rem;
+  text-transform: uppercase;
+}
+
+.field           { margin-bottom: 1rem; }
+.field:last-child { margin-bottom: 0; }
+
+.row2            { display: flex; gap: .75rem; }
+.row2 .field     { flex: 1; }
+
+input[type="text"],
+input[type="url"] {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--neon-green);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .95rem;
+  padding: .6rem .9rem;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+  caret-color: var(--neon-cyan);
+}
+
+input:focus {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 8px rgba(0,224,255,.4);
+}
+
+/* ── Botones ── */
+.btn {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  padding: .55rem 1.3rem;
+  transition: all .2s;
+}
+
+.btn-cyan  { background: transparent; border: 1px solid var(--neon-cyan);  color: var(--neon-cyan); }
+.btn-green { background: transparent; border: 1px solid var(--neon-green); color: var(--neon-green); }
+
+.btn-cyan:hover  { background: rgba(0,224,255,.08);  box-shadow: var(--gc); }
+.btn-green:hover { background: rgba(0,255,179,.08); box-shadow: var(--gg); }
+
+/* ── Caja de salida (ejercicios JS) ── */
+.out-label {
+  font-size: .7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: .75rem 0 .25rem;
+}
+
+.out-box {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .75rem 1rem;
+  min-height: 2.6rem;
+  color: var(--neon-green);
+  font-size: .92rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+  transition: border-color .3s, box-shadow .3s;
+}
+
+.out-box.ok    { border-color: var(--neon-green); box-shadow: var(--gg); }
+.out-box.fail  { color: var(--neon-pink);  border-color: var(--neon-pink); box-shadow: var(--gp); }
+.out-box.empty { color: var(--muted); font-style: italic; }

@@ -1,0 +1,197 @@
+/* ══════════════════════════════════════════
+   styles.css — Variables, Reset, Layout,
+                Header, Footer, Divider
+══════════════════════════════════════════ */
+
+/* ── Variables globales ── */
+:root {
+  --bg:          #0b0c10;
+  --surface:     #111218;
+  --surface2:    #161820;
+  --neon-cyan:   #00e0ff;
+  --neon-green:  #00ffb3;
+  --neon-pink:   #ff4d6d;
+  --neon-purple: #a78bfa;
+  --muted:       #9aa0a6;
+  --text:        #cfd3d7;
+  --border:      rgba(0,224,255,0.12);
+  --border-h:    rgba(0,224,255,0.4);
+  --gc: 0 0 10px rgba(0,224,255,0.5), 0 0 30px rgba(0,224,255,0.2);
+  --gg: 0 0 10px rgba(0,255,179,0.5), 0 0 30px rgba(0,255,179,0.1);
+  --gp: 0 0 10px rgba(255,77,109,0.5);
+  --gv: 0 0 10px rgba(167,139,250,0.5);
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+/* ── Body ── */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Share Tech Mono', monospace;
+  min-height: 100vh;
+  line-height: 1.6;
+  background-image:
+    linear-gradient(rgba(0,224,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,224,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Scanlines overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent, transparent 2px,
+    rgba(0,0,0,0.07) 2px, rgba(0,0,0,0.07) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── Header ── */
+header {
+  border-bottom: 1px solid var(--border);
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(180deg, rgba(0,224,255,0.04) 0%, transparent 100%);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
+.logo {
+  font-family: 'VT323', monospace;
+  font-size: 2rem;
+  color: var(--neon-cyan);
+  text-shadow: var(--gc);
+  letter-spacing: 3px;
+}
+
+header nav {
+  margin-left: auto;
+  display: flex;
+  gap: 1.5rem;
+}
+
+header nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color .2s, text-shadow .2s;
+}
+
+header nav a:hover {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 8px rgba(0,224,255,.4);
+}
+
+/* ── Main layout ── */
+main {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+
+/* ── Divider ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 3rem 0;
+  position: relative;
+}
+
+.divider::after {
+  content: attr(data-label);
+  position: absolute;
+  top: -.65rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg);
+  padding: 0 1rem;
+  font-size: .68rem;
+  letter-spacing: 3px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* ── Footer ── */
+footer {
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 1.8rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+footer span {
+  color: var(--neon-cyan);
+  text-shadow: var(--gc);
+}
+
+footer .heart {
+  color: var(--neon-pink);
+  display: inline-block;
+  animation: heartbeat 1.5s ease infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.2); }
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.social-links a svg { width: 14px; height: 14px; }
+
+.social-links a:hover      { color: var(--neon-cyan);   border-color: var(--neon-cyan);   text-shadow: var(--gc); }
+.social-links a.ig:hover   { color: var(--neon-pink);   border-color: var(--neon-pink);   text-shadow: var(--gp); }
+.social-links a.gh:hover   { color: var(--neon-green);  border-color: var(--neon-green);  text-shadow: var(--gg); }
+.social-links a.dc:hover   { color: var(--neon-purple); border-color: var(--neon-purple); text-shadow: var(--gv); }
+
+footer a {
+  color: var(--neon-green);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--neon-pink);
+  text-shadow: var(--gp);
+}

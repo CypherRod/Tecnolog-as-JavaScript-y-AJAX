@@ -1,0 +1,98 @@
+/* ══════════════════════════════════════════
+   ajax.css — Estilos exclusivos de la
+              sección AJAX:
+              badge de estado, scroll-box,
+              cabeceras HTTP, código de estado,
+              grid de dos columnas.
+══════════════════════════════════════════ */
+
+/* ── Badge de estado de la petición ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  font-size: .82rem;
+  padding: .28rem .7rem;
+  border-radius: 3px;
+  border: 1px solid;
+}
+
+.badge.idle    { color: var(--muted);        border-color: var(--muted); }
+.badge.loading { color: var(--neon-purple);  border-color: var(--neon-purple); box-shadow: var(--gv); }
+.badge.done    { color: var(--neon-green);   border-color: var(--neon-green);  box-shadow: var(--gg); }
+.badge.error   { color: var(--neon-pink);    border-color: var(--neon-pink);   box-shadow: var(--gp); }
+
+/* Punto indicador dentro del badge */
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Animación de parpadeo mientras carga */
+.badge.loading .dot { animation: blink .9s infinite; }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .2; }
+}
+
+/* ── Scroll-box (cabeceras y cuerpo de respuesta) ── */
+.scroll-box {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .85rem 1rem;
+  max-height: 260px;
+  overflow-y: auto;
+  font-size: .82rem;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-all;
+  line-height: 1.6;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neon-cyan) transparent;
+}
+
+/* Placeholder cuando el scroll-box está vacío */
+.scroll-box:empty::before {
+  content: '— sin datos —';
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ── Coloreado de cabeceras HTTP ── */
+.hdr-key { color: var(--neon-cyan); }
+.hdr-val { color: var(--text); }
+
+/* ── Código de estado HTTP ── */
+.code-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .5rem 0;
+}
+
+.code-num {
+  font-family: 'VT323', monospace;
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.code-num.ok   { color: var(--neon-green); text-shadow: var(--gg); }
+.code-num.err  { color: var(--neon-pink);  text-shadow: var(--gp); }
+.code-num.idle { color: var(--muted); }
+
+.code-txt { font-size: .88rem; color: var(--muted); }
+
+/* ── Grid de dos columnas (código + cabeceras) ── */
+.ajax-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+@media (max-width: 640px) {
+  .ajax-grid { grid-template-columns: 1fr; }
+}
